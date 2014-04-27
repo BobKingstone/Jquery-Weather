@@ -15,8 +15,10 @@
 	content: attr(data-icon);
 }
 
-.content {
+.ui-content {
 	text-align: center;
+	background-color: #5B80B5;
+	color: #fff;
 }
 
 #current_temp {

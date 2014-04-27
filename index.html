@@ -13,70 +13,8 @@
 	 <meta name="apple-mobile-web-app-capable">
 	 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script> 
 	 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script> 
+	 <script src="js/app.js"></script>
 	<script type="text/javascript">
-
-		var icons = {
-				"clear-day" 			: "B",
-				"clear-night" 			: "C",
-				"rain"					: "R",
-				"snow"					: "G",
-				"sleet"					: "X",
-				"wind"					: "S",
-				"fog"					: "N",
-				"cloudy"				: "Y",
-				"partly-cloudy-day"		: "H",
-				"partly-cloudy-night"	: "I",
-		};
-
-		var cities = {
-				"london" 				: { coords : { latitude : "51.50722",    	longitude:  "-0.12750" 		}},
-				"edinburgh"				: { coords : { latitude : "55.9520600",  	longitude:  "-3.1964800" 	}},
-				"cardiff"				: { coords : { latitude : "51.58",			longitude:  "-3.18" 		}},
-				"antarctica"			: { coords : { latitude : "-79.644474",		longitude:  "12.992225"		}},
-				"current location"		: ""
-		};
-
-		function loadWeather(cityCoords){
-
-			var latlng = cityCoords.coords.latitude + "," + cityCoords.coords.longitude;
-			var forecastURL = "https://api.forecast.io/forecast/0d2c400aa68ca8e6cda034a2649c9b72/" + latlng;
-
-			$.ajax({
-				url: forecastURL,
-				jsonpCallback: 'jsonCallback',
-				contentType: "application/json",
-				dataType: 'jsonp',
-				success: function(json) {
-					console.log(json);
-					$("#current_temp").html(Math.round(json.currently.temperature) + "&#176;F");
-					$("#current_summary").html(json.currently.summary);
-					$("#current_temp").attr("data-icon",icons[json.currently.icon]);
-					$("#day0").attr("data-icon",icons[json.daily.data[0].icon]);
-				},
-				error: function(e) {
-					console.log(e.message);
-				}
-			});
-		}
-
-		function loadDefaultCity() {
-			loadCity("London");
-		}
-
-		function loadCity(city) {
-			$("#location").html(city);
-
-			if (city.toLowerCase() == "current location") {
-				if ( navigator.geolocation ) {
-					navigator.geolocation.getCurrentPosition(loadWeather, loadDefaultCity);
-				} else {
-					loadDefaultCity();
-				}
-			} else {
-				loadWeather(cities[city.toLowerCase()]);
-			}
-		}
-
 		$(document).ready(function(){
 			loadCity("London");
 
@@ -89,7 +27,7 @@
 
 <body>
 	<div data-role="page">
-		<div data-role="panel" id="left-panel" data-theme="c">
+		<div data-role="panel" id="left-panel" data-theme="b">
 		    <ul data-theme="b" data-role="listview">
 		    	<li><a href="#" data-rel="close" data-icon="delete">Close</a></li>
 		    	<li data-role"list-divider">Select a City</li>
@@ -111,16 +49,19 @@
 			<h1 id="current_temp" class="icon" data-icon="A">65&#176;F</h1>
 			<p id="current_summary">Partly Cloudy</p>
 			<p id="location">Current Location</p>
+			<div data-role="collapsible">
+				<h2>Week Forecast</h2>
+				<ul data-role="list"  class="WeekForecast">
+				    <li><h3 id="0" class="icon" data-icon="">  Tomorrow</h3></li>
+				    <li><h3 id="1" class="icon" data-icon="">  Day after</h3></li>
+				    <li><h3 id="2" class="icon" data-icon="">  Day after</h3></li>
+				    <li><h3 id="3" class="icon" data-icon="">  Day after</h3></li>
+				    <li><h3 id="4" class="icon" data-icon="">  Day after</h3></li>
+				    <li><h3 id="5" class="icon" data-icon="">  Day after</h3></li>
+				    <li><h3 id="6" class="icon" data-icon="">  Day after</h3></li>
+				</ul>				
+			</div>
 
-			<ul data-role="listview">
-			    <li><h2 id="day0" class="icon" data-icon="">Tomorrow</h2></li>
-			    <li><h2 id="day1" class="icon" data-icon="">Day after</h2></li>
-			    <li><h2 id="day2" class="icon" data-icon="">Day after</h2></li>
-			    <li><h2 id="day3" class="icon" data-icon="">Day after</h2></li>
-			    <li><h2 id="day4" class="icon" data-icon="">Day after</h2></li>
-			    <li><h2 id="day5" class="icon" data-icon="">Day after</h2></li>
-			    <li><h2 id="day6" class="icon" data-icon="">Day after</h2></li>
-			</ul>
 		</div>
 
 		<div data-role="footer" data-position="fixed">
