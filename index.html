@@ -12,17 +12,10 @@
 	 <link rel="apple-touch-icon" href="">
 	 <meta name="apple-mobile-web-app-capable">
 	 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script> 
-	 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script> 
+	 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+	 <script src="js/data.js"></script>
 	 <script src="js/app.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			loadCity("London");
 
-			$("a.city").bind("click",function() {
-				loadCity($(this).html());
-			});
-		});
-	</script>
 </head>
 
 <body>
@@ -52,13 +45,6 @@
 			<div data-role="collapsible">
 				<h2>Week Forecast</h2>
 				<ul data-role="list"  class="WeekForecast">
-				    <li><h3 id="0" class="icon" data-icon="">  Tomorrow</h3></li>
-				    <li><h3 id="1" class="icon" data-icon="">  Day after</h3></li>
-				    <li><h3 id="2" class="icon" data-icon="">  Day after</h3></li>
-				    <li><h3 id="3" class="icon" data-icon="">  Day after</h3></li>
-				    <li><h3 id="4" class="icon" data-icon="">  Day after</h3></li>
-				    <li><h3 id="5" class="icon" data-icon="">  Day after</h3></li>
-				    <li><h3 id="6" class="icon" data-icon="">  Day after</h3></li>
 				</ul>				
 			</div>
 
@@ -70,7 +56,15 @@
 	</div>
 
 
-	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			loadCity("London");
+
+			$("a.city").bind("click",function() {
+				loadCity($(this).html());
+			});
+		});
+	</script>	
 </body>
 
 </html>

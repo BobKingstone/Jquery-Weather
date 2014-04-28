@@ -15,10 +15,14 @@
 	content: attr(data-icon);
 }
 
+.ui-panel-wrapper {
+	/*background-color: #5B80B5;*/
+}
 .ui-content {
 	text-align: center;
-	background-color: #5B80B5;
-	color: #fff;
+
+	/*color: #fff;*/
+	min-height: 100%;
 }
 
 #current_temp {
@@ -27,4 +31,9 @@
 
 #current_summary {
 	font-size: 1.5em;
+}
+
+.WeekForecast {
+	list-style: none;
+	text-align: left;
 }
